@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 88f8f7d77bc4a284298b36aeb4065952
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146307
+  packageName: 2D Spaceships Free Trial
+  packageVersion: 1.0
+  assetPath: Assets/2DSpaceshipsFreeTrial/Prefabs/2DShipsStandardWeapons/TopView/MissileLauncher/2DShipsMissileLauncherTopView.prefab
+  uploadId: 310928

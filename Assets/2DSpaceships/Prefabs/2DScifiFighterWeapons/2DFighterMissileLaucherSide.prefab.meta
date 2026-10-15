@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b63c8c5611901eb4e951a42ba141a0e0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 146307
+  packageName: 2D Spaceships Free Trial
+  packageVersion: 1.0
+  assetPath: Assets/2DSpaceshipsFreeTrial/Prefabs/2DScifiFighterWeapons/2DFighterMissileLaucherSide.prefab
+  uploadId: 310928
