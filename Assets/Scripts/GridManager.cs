@@ -75,34 +75,59 @@ public class GridManager : MonoBehaviour
 
     // GRID INITIALIZATION
 
+
+    [Header("Grid References")]
+    [SerializeField] private Transform cellGridParent;
+
     public void InitializeGrid()
     {
+        if (cellGridParent == null)
+        {
+            Debug.LogError("CellGrid parent is not assigned!");
+            return;
+        }
+
+        // Finds all GridCell components under CellGrid,
+        // including cells nested inside CellGroups.
+        cells = cellGridParent.GetComponentsInChildren<GridCell>(true);
+
         grid = new GridCell[gridWidth, gridHeight];
         ships.Clear();
 
+        int registeredCells = 0;
+
         foreach (GridCell cell in cells)
         {
-            if (cell == null)
-                continue;
-
             if (!IsWithinBounds(cell.x, cell.y))
             {
-                Debug.LogWarning($"Cell {cell.name} is outside grid bounds.");
+                Debug.LogError(
+                    $"Cell {cell.name} has invalid coordinates ({cell.x}, {cell.y})"
+                );
                 continue;
             }
 
             if (grid[cell.x, cell.y] != null)
             {
-                Debug.LogError($"Duplicate coordinates: ({cell.x}, {cell.y})");
+                Debug.LogError(
+                    $"Duplicate coordinates ({cell.x}, {cell.y})!"
+                );
                 continue;
             }
 
             grid[cell.x, cell.y] = cell;
             cell.ResetCell();
+
+            registeredCells++;
         }
 
-        Debug.Log("Star Searchers Grid Initialized");
+        Debug.Log($"Grid initialized: {registeredCells}/{gridWidth * gridHeight} cells registered.");
+
+        if (registeredCells != gridWidth * gridHeight)
+        {
+            Debug.LogError("Grid initialization incomplete! Check cell coordinates and GridCell components.");
+        }
     }
+
 
     // CELL METHODS
 
@@ -116,7 +141,7 @@ public class GridManager : MonoBehaviour
 
     public GridCell GetCell(int x, int y)
     {
-        if (grid == null || !IsWithinBounds(x, y))
+        if (grid == null)
             return null;
 
         return grid[x, y];

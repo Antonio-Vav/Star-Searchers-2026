@@ -8,10 +8,10 @@ public class GridInputTester : MonoBehaviour
 
     [Header("Test Coordinates (0-9)")]
     [Range(0, 9)]
-    [SerializeField] private int x = 0;
+    [SerializeField] private int x;
 
     [Range(0, 9)]
-    [SerializeField] private int y = 0;
+    [SerializeField] private int y;
 
     [Header("Test Controls")]
     [SerializeField] private bool testAttack;

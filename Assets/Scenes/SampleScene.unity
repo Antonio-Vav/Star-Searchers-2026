@@ -4293,6 +4293,51 @@ Transform:
   - {fileID: 505866001}
   m_Father: {fileID: 1702698773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &808843301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 808843302}
+  - component: {fileID: 808843303}
+  m_Layer: 0
+  m_Name: GridInput Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &808843302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808843301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36303, y: -0.12709, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808843303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808843301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdd9a6a50ccdfd44481e261dd18ee308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridInputController
+  gridManager: {fileID: 1225643364}
 --- !u!1 &866275865
 GameObject:
   m_ObjectHideFlags: 0
@@ -5413,6 +5458,54 @@ MonoBehaviour:
     length: 0
     occupiedCells: []
   hasBeenAttacked: 0
+--- !u!1 &991323754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991323755}
+  - component: {fileID: 991323756}
+  m_Layer: 0
+  m_Name: GridInput Tester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &991323755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991323754}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36303, y: -0.12709, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &991323756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991323754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b609f335b0e0c74e97dc569238578ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridInputTester
+  gridManager: {fileID: 1225643364}
+  x: 4
+  y: 5
+  testAttack: 0
 --- !u!1 &992204022
 GameObject:
   m_ObjectHideFlags: 0
@@ -7293,6 +7386,7 @@ MonoBehaviour:
   gridWidth: 10
   gridHeight: 10
   cells: []
+  cellGridParent: {fileID: 1702698773}
 --- !u!1 &1225706986
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,8 +9805,8 @@ Transform:
   m_GameObject: {fileID: 1702698772}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 413.72693, y: 207.66547, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.92, y: 1.11, z: 0}
+  m_LocalScale: {x: 0.028, y: 0.028, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 692643917}
@@ -12495,3 +12589,5 @@ SceneRoots:
   - {fileID: 423292602}
   - {fileID: 1702698773}
   - {fileID: 382890578}
+  - {fileID: 991323755}
+  - {fileID: 808843302}
