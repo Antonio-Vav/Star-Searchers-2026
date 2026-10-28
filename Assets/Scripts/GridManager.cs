@@ -142,7 +142,16 @@ public class GridManager : MonoBehaviour
     public GridCell GetCell(int x, int y)
     {
         if (grid == null)
+        {
+            Debug.LogError("Grid has not been initialized!");
             return null;
+        }
+
+        if (x < 0 || x >= grid.GetLength(0) ||
+            y < 0 || y >= grid.GetLength(1))
+        {
+            return null;
+        }
 
         return grid[x, y];
     }
