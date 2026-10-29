@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    [SerializeField] private BattleshipAI ai;
+
     public static TurnManager Instance { get; private set; }
 
     public int turnCount = 1;
@@ -36,6 +38,28 @@ public class TurnManager : MonoBehaviour
         turnCount++;
 
         Debug.Log(IsPlayerTurn ? "Player Turn" : "AI Turn");
+    }
+
+    public void RunAITurn()
+    {
+        if (!gameStarted)
+            return;
+
+        if (IsPlayerTurn)
+            return;
+
+        if (ai == null)
+        {
+            ai = FindFirstObjectByType<BattleshipAI>();
+        }
+
+        if (ai == null)
+        {
+            Debug.LogError("TurnManager: No BattleshipAI found.");
+            return;
+        }
+
+        ai.TakeTurn();
     }
 }
 
