@@ -91,6 +91,19 @@ public class GridManager : MonoBehaviour
         // including cells nested inside CellGroups.
         cells = cellGridParent.GetComponentsInChildren<GridCell>(true);
 
+        Debug.Log($"Found {cells.Length} GridCell components.");
+
+        foreach (GridCell cell in cells)
+        {
+            if (cell != null)
+            {
+                Debug.Log(
+                    $"Found cell: {cell.name}, " +
+                    $"Coordinates: ({cell.x}, {cell.y})"
+                );
+            }
+        }
+
         grid = new GridCell[gridWidth, gridHeight];
         ships.Clear();
 
@@ -115,7 +128,20 @@ public class GridManager : MonoBehaviour
             }
 
             grid[cell.x, cell.y] = cell;
+
+            if (cell.ship != null)
+            {
+                Debug.LogWarning(
+                    $"Cell ({cell.x}, {cell.y}) already has a ship " +
+                    $"before ResetCell(). ID='{cell.ship.shipID}', " +
+                    $"Length={cell.ship.length}, Cell={cell.name}"
+                );
+            }
+
             cell.ResetCell();
+            Debug.Log(
+                $"Reset cell ({cell.x}, {cell.y}): ship is null = {cell.ship == null}"
+            );
 
             registeredCells++;
         }
@@ -179,10 +205,14 @@ public class GridManager : MonoBehaviour
 
     // SHIP PLACEMENT
 
+    
     public bool CanPlaceShip(int x, int y, int length, ShipOrientation orientation)
     {
         if (length <= 0)
+        {
+            Debug.LogWarning($"Invalid ship length: {length}");
             return false;
+        }
 
         for (int i = 0; i < length; i++)
         {
@@ -196,15 +226,42 @@ public class GridManager : MonoBehaviour
 
             GridCell cell = GetCell(checkX, checkY);
 
+            // Check whether the grid position exists.
             if (cell == null)
+            {
+                Debug.LogWarning(
+                    $"Placement rejected: no cell exists at ({checkX}, {checkY})."
+                );
                 return false;
+            }
 
-            if (cell.HasShip || cell.hasBeenAttacked)
+            // Check whether the cell already contains a ship.
+            if (cell.ship != null)
+            {
+                Debug.LogError(
+                    $"OCCUPIED CELL: ({checkX}, {checkY}) | " +
+                    $"Ship ID: '{cell.ship.shipID}' | " +
+                    $"Ship length: {cell.ship.length} | " +
+                    $"GridManager: {gameObject.name}"
+                );
+
                 return false;
+            }
+
+            // Check whether the cell has already been attacked.
+            if (cell.hasBeenAttacked)
+            {
+                Debug.LogWarning(
+                    $"Placement rejected: cell ({checkX}, {checkY}) " +
+                    "has already been attacked."
+                );
+                return false;
+            }
         }
 
         return true;
     }
+
 
     public bool AddShip(string shipID, int x, int y, int length, ShipOrientation orientation)
     {

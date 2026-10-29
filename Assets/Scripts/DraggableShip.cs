@@ -145,6 +145,14 @@ public class DraggableShip : MonoBehaviour
             orientation
         );
 
+        Debug.Log(
+            $"Placement attempt: Ship={shipID}, " +
+            $"Length={shipLength}, " +
+            $"Start=({targetCell.x}, {targetCell.y}), " +
+            $"Orientation={orientation}, " +
+            $"Success={success}"
+        );
+
         if (success)
         {
             isPlaced = true;
@@ -162,7 +170,6 @@ public class DraggableShip : MonoBehaviour
         }
         else
         {
-            // Restore the old grid data if placement fails.
             if (previouslyPlaced)
             {
                 grid.AddShip(
@@ -176,7 +183,11 @@ public class DraggableShip : MonoBehaviour
 
             RestoreShip();
 
-            Debug.LogWarning("Invalid ship placement!");
+            Debug.LogWarning(
+                $"Invalid placement for {shipID} at " +
+                $"({targetCell.x}, {targetCell.y}), " +
+                $"orientation: {orientation}, length: {shipLength}."
+            );
         }
     }
 
