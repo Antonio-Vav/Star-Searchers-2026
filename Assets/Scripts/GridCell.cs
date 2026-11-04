@@ -1,14 +1,13 @@
-
 using UnityEngine;
-
 public class GridCell : MonoBehaviour
 {
     [Header("Grid Coordinates")]
     [Range(0, 9)] public int x;
     [Range(0, 9)] public int y;
 
-    [HideInInspector] public ShipData ship;
-    [HideInInspector] public bool hasBeenAttacked;
+    // Runtime only board state. Do NOT let Unity serialize these fields.
+    [System.NonSerialized] public ShipData ship;
+    [System.NonSerialized] public bool hasBeenAttacked;
 
     public bool HasShip => ship != null;
     public bool IsEmpty => ship == null;
@@ -22,5 +21,4 @@ public class GridCell : MonoBehaviour
         ship = null;
         hasBeenAttacked = false;
     }
-
 }

@@ -3270,6 +3270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d246ffe073f174b913f11a67988999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
+  ai: {fileID: 0}
   turnCount: 1
   gameStarted: 0
 --- !u!1 &545504513
@@ -9180,6 +9181,9 @@ MonoBehaviour:
   shipID: Attack Shuttle
   shipLength: 3
   boardSetup: {fileID: 2017321957}
+  inputCamera: {fileID: 519420031}
+  maxSnapDistanceInCells: 0.75
+  logPlacement: 1
 --- !u!61 &1473901339
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11854,6 +11858,9 @@ MonoBehaviour:
   shipID: Patrol Ship
   shipLength: 1
   boardSetup: {fileID: 2017321957}
+  inputCamera: {fileID: 519420031}
+  maxSnapDistanceInCells: 0.75
+  logPlacement: 1
 --- !u!61 &1882101217
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13224,6 +13231,9 @@ MonoBehaviour:
   shipID: Destroyer
   shipLength: 4
   boardSetup: {fileID: 2017321957}
+  inputCamera: {fileID: 519420031}
+  maxSnapDistanceInCells: 0.75
+  logPlacement: 1
 --- !u!61 &2041042025
 BoxCollider2D:
   m_ObjectHideFlags: 0
