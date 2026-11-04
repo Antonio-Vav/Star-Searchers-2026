@@ -21,4 +21,5 @@ public class GridCell : MonoBehaviour
         ship = null;
         hasBeenAttacked = false;
     }
+
 }

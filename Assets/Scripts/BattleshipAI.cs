@@ -14,6 +14,10 @@ public class BattleshipAI : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool logAttacks = true;
 
+    // The GameManager uses these to show the AI's last shot in the HUD.
+    public Vector2Int LastAttackPosition { get; private set; } = new Vector2Int(-1, -1);
+    public AttackResult LastAttackResult { get; private set; } = AttackResult.Invalid;
+
     private readonly System.Random random = new System.Random();
 
     // Squares adjacent to previous hits that the AI should investigate.
@@ -67,6 +71,10 @@ public class BattleshipAI : MonoBehaviour
     /// This method does not advance the turn counter.
     public bool TakeTurn()
     {
+        // Reset per-turn results so a failed turn cannot reuse an old hit.
+        LastAttackPosition = new Vector2Int(-1, -1);
+        LastAttackResult = AttackResult.Invalid;
+
         if (TurnManager.Instance == null)
         {
             Debug.LogError(
@@ -126,6 +134,8 @@ public class BattleshipAI : MonoBehaviour
         AttackResult result =
             playerGrid.AttackCell(target.x, target.y);
 
+        LastAttackPosition = target;
+        LastAttackResult = result;
         HandleAttackResult(target, result);
 
         return result != AttackResult.Invalid &&
@@ -279,6 +289,8 @@ public class BattleshipAI : MonoBehaviour
     public void ResetAI()
     {
         targetQueue.Clear();
+        LastAttackPosition = new Vector2Int(-1, -1);
+        LastAttackResult = AttackResult.Invalid;
     }
 
     /// Optional helper if the board dimensions change.
@@ -289,4 +301,5 @@ public class BattleshipAI : MonoBehaviour
 
         targetQueue.Clear();
     }
+
 }
