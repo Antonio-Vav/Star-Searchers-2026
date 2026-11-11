@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour
             firePanel.SetActive(false);
 
         SetText(turnStatusText, "Place your ships, then press Confirm Placement.");
-        SetText(playerShotText, "Your last shot: —");
-        SetText(aiShotText, "AI last shot: —");
+        SetText(playerShotText, "Your last shot: ï¿½");
+        SetText(aiShotText, "AI last shot: ï¿½");
 
         if (!ReferencesValid())
             Debug.LogError("GameManager: Configure the missing references in the Inspector.", this);
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
 
         if (!ReferencesValid() || !BoardsValid())
         {
-            SetText(turnStatusText, "Configuration error — check Console and Inspector.");
+            SetText(turnStatusText, "Configuration error ï¿½ check Console and Inspector.");
             return;
         }
 
@@ -115,11 +115,11 @@ public class GameManager : MonoBehaviour
 
         if (!DeployAIFleet(playerFleet))
         {
-            SetText(turnStatusText, "AI ship placement failed — check Console.");
+            SetText(turnStatusText, "AI ship placement failed ï¿½ check Console.");
             return;
         }
 
-        battleshipAI.ResetAI();
+        battleshipAI.ConfigureFleet(playerFleet);   // allow AI to know ship lengths for probability calculations
         turnManager.StartGame();
         matchStarted = true;
         gameOver = false;
@@ -130,9 +130,9 @@ public class GameManager : MonoBehaviour
         if (fireButton != null)
             fireButton.interactable = true;
 
-        SetText(turnStatusText, "Your turn! Enter A1–J10 and press Fire.");
-        SetText(playerShotText, "Your last shot: —");
-        SetText(aiShotText, "AI last shot: —");
+        SetText(turnStatusText, "Your turn! Enter A1ï¿½J10 and press Fire.");
+        SetText(playerShotText, "Your last shot: ï¿½");
+        SetText(aiShotText, "AI last shot: ï¿½");
         Debug.Log($"Match ready: {playerGrid.ShipCount} player ships, " +
                   $"{aiGrid.ShipCount} hidden AI ships.");
     }
@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("GameManager: AI could not perform a valid attack. " +
                            "Make sure TurnManager and GameManager reference the SAME " +
                            "BattleshipAI, and that BattleshipAI points to PLAYER Grid.", this);
-            FinishGame("AI turn failed — inspect the Console.");
+            FinishGame("AI turn failed ï¿½ inspect the Console.");
             yield break;
         }
 
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
         aiTurnRunning = false;
         if (fireButton != null)
             fireButton.interactable = true;
-        SetText(turnStatusText, "Your turn! Enter A1–J10 and press Fire.");
+        SetText(turnStatusText, "Your turn! Enter A1ï¿½J10 and press Fire.");
     }
 
     private void FinishGame(string message)
